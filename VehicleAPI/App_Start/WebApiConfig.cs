@@ -15,11 +15,8 @@ namespace VehicleAPI
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            // Output json
+            // Output JSON
             //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
-
-            // Enable CORS Requests
-            //config.EnableCors();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

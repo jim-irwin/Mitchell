@@ -167,12 +167,13 @@ namespace VehicleAPI.Tests
                 int NewYear = OldModel.Year - 1;
                 Vehicle item = new Vehicle
                 {
+                    Id = 1,
                     Year = NewYear,
                     Make = "Dodge",
                     Model = "Charger"
                 };
                 client.Headers[HttpRequestHeader.ContentType] = "application/json";
-                client.UploadString(EndPoint + "vehicles/1", "PUT", JsonConvert.SerializeObject(item));
+                client.UploadString(EndPoint + "vehicles", "PUT", JsonConvert.SerializeObject(item));
                 string NewItem = client.DownloadString(EndPoint + "vehicles/1");
                 Vehicle NewModel = JsonConvert.DeserializeObject<Vehicle>(NewItem);
                 // Assert
@@ -185,7 +186,8 @@ namespace VehicleAPI.Tests
                 {
                     client.Headers[HttpRequestHeader.ContentType] = "application/json";
                     // put invalid item
-                    client.UploadString(EndPoint + "vehicles/0", "PUT", JsonConvert.SerializeObject(item));
+                    item.Id = 0;
+                    client.UploadString(EndPoint + "vehicles", "PUT", JsonConvert.SerializeObject(item));
                 }
                 catch (WebException)
                 {

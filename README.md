@@ -11,19 +11,13 @@ Vehicle entity.
 
 ## Requirments
 
-#### Implemented
-
 + C# or Java. C# is preferred.
 
 + Automated testing.
 
 + In-memory persistence of created vehicle objects.
 
-#### Not Implemented
-
 + Function properly with the provided test web client.
-
-   #### *Need to debug with test client dev*
 
 ## Optional Features
 

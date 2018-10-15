@@ -63,14 +63,12 @@ namespace VehicleAPI.Controllers
         /// <summary>
         /// Update a Vehicle by Id
         /// </summary>
-        /// <param name="id">id of Vehicle to update</param>
-        /// <param name="vehicle">updated Vehicle</param>
-        public void PutVehicle(int id, Vehicle vehicle)
+        /// <param name="item">updated Vehicle</param>
+        public void PutVehicle(Vehicle item)
         {
-            vehicle.Id = id;
             if (ModelState.IsValid)
             {
-                if (!_repository.Update(vehicle))
+                if (!_repository.Update(item))
                 {
                     throw new HttpResponseException(HttpStatusCode.NotFound);
                 }

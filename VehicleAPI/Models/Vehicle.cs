@@ -8,7 +8,6 @@ namespace VehicleAPI.Models
 {
     public class Vehicle
     {
-        //[Required]
         public int Id { get; set; }
         [Range(1950, 2050)]
         public int Year { get; set; }
