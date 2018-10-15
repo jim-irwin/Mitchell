@@ -18,7 +18,11 @@ namespace VehicleAPI.Tests
     [TestClass]
     public class VehiclesControllerTest
     {
-        static readonly string EndPoint = "http://localhost:49597/";
+        // TODO: move endpoints config to file
+        // Local TEST
+        //static readonly string EndPoint = "http://localhost:49597/";
+        // Production
+        static readonly string EndPoint = "https://azurevehicle.azurewebsites.net/";
 
         [TestMethod]
         public void Get()
