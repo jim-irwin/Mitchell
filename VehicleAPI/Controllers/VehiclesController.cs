@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -13,7 +12,23 @@ namespace VehicleAPI.Controllers
     /// </summary>
     public class VehiclesController : ApiController
     {
-        static readonly IVehicleRepository _repository = new VehicleRepository();
+        // needs to be static for now so that data presists in memory
+        private static IVehicleRepository _repository;
+
+        /// <summary>
+        /// This class depends on VehicleRepository so we will inject the repository into the controller
+        /// by passing the IVehicleRepository, repository instance as a constructor parameter. However
+        /// this will fail since the web API creates the controller, and it does not know about IVehicleRepository.
+        /// To handle this we will need to implement a web API dependency resolver.
+        /// </summary>
+        /// <param name="repository">IVehicleRepository</param>
+        public VehiclesController(IVehicleRepository repository)
+        {
+            if (_repository == null)
+            {
+                _repository = repository;
+            }
+        }
 
         /// <summary>
         /// Get a list of all vehicles
@@ -42,7 +57,7 @@ namespace VehicleAPI.Controllers
         /// <summary>
         /// Create a new Vehicle
         /// </summary>
-        /// <param name="item">item to create</param>
+        /// <param name="item">Vehicle to create</param>
         /// <returns>HttpResponseMessage</returns>
         public HttpResponseMessage PostVehicle(Vehicle item)
         {

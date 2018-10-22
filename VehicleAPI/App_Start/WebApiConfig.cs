@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Web.Http;
+﻿using System.Web.Http;
+using Unity;
+using VehicleAPI.Models;
 
 namespace VehicleAPI
 {
@@ -11,6 +9,14 @@ namespace VehicleAPI
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+
+            // The dependency resolver is attached to the HttpConfiguration object
+            // Create a new Unity container 
+            var container = new UnityContainer();
+            // Register the IVehicleRepository interface with Unity
+            container.RegisterType<IVehicleRepository, VehicleRepository>(new Unity.Lifetime.HierarchicalLifetimeManager());
+            // create a UnityResolver
+            config.DependencyResolver = new Resolver.UnityResolver(container);
 
             // Web API routes
             config.MapHttpAttributeRoutes();

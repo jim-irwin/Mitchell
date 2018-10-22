@@ -39,8 +39,6 @@ Vehicle entity.
    
 ## Design
  
-#### Model
-
 + A Vehicle is a simple object defined as follows:
 ```
    public class Vehicle
@@ -51,7 +49,6 @@ Vehicle entity.
        public string Model { get; set; }
    }
 ```
-#### Service
 
 + RESTful service must implement the following routes:
 ```

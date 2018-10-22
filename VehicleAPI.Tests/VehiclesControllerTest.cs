@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VehicleAPI;
 using VehicleAPI.Models;
 using VehicleAPI.Controllers;
 using System.Net;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Collections.Specialized;
 
 namespace VehicleAPI.Tests
@@ -18,17 +13,16 @@ namespace VehicleAPI.Tests
     [TestClass]
     public class VehiclesControllerTest
     {
-        // TODO: move endpoints config to file
         // Local TEST
-        //static readonly string EndPoint = "http://localhost:49597/";
+        static readonly string EndPoint = "http://localhost:49597/";
         // Production
-        static readonly string EndPoint = "https://azurevehicle.azurewebsites.net/";
+        //static readonly string EndPoint = "https://azurevehicle.azurewebsites.net/";
 
         [TestMethod]
         public void Get()
         {
             // Arrange
-            VehiclesController controller = new VehiclesController();
+            VehiclesController controller = new VehiclesController(new VehicleRepository());
 
             // Act
             IEnumerable<Vehicle> result = controller.GetAllVehicles();
@@ -42,7 +36,7 @@ namespace VehicleAPI.Tests
         public void GetById()
         {
             // Arrange
-            VehiclesController controller = new VehiclesController();
+            VehiclesController controller = new VehiclesController(new VehicleRepository());
 
             // Act & Assert
             try
